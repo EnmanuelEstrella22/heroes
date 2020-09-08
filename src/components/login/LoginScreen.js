@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../auth/AuthContext";
+import { types } from "../../types/types";
 
 export const LoginScreen = ({ history }) => {
+
+  const {dispatch} = useContext(AuthContext);
+
   const handleLogin = () => {
+    const lastPath = localStorage.getItem('lastPath') || '/';
     // history.push("/");
-    history.replace("/"); // me remplaza el historia para que no pueda dar para atras y el push si lo permite.
+    dispatch({
+      type: types.login,
+      payload:{
+        name: 'Enmanuel'
+      }
+    })
+    history.replace(lastPath); // me remplaza el historia para que no pueda dar para atras y el push si lo permite.
+    
   };
 
   return (
